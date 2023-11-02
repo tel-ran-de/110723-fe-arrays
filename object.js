@@ -168,9 +168,137 @@ const min = arrNumber10.reduce((accumulator, currentValue) => {
 // второй параметр - дефолтное значение - подставляется в аккумулятор на первой итерации
 console.log(min)
 
-const products = [
-	{id: 1, title: ‘велосипед’, price: 45000, marks: [4, 5, 3, 5]},
-	{id: 2, title: ‘самокат’, price: 15000, marks: [4, 4, 5, 4]},
-	{id: 3, title: ‘сноуборд’, price: 20000, marks: [3, 3, 2, 3]},
-	{id: 4, title: ‘лыжи’, price: 22000, marks: [4, 4, 3, 4]}
+const productsWithMarks = [
+  { id: 1, title: 'велосипед', price: 45000, marks: [4, 5, 3, 5] },
+  { id: 2, title: 'самокат', price: 15000, marks: [4, 4, 5, 4] },
+  { id: 3, title: 'сноуборд', price: 20000, marks: [3, 3, 2, 3] },
+  { id: 4, title: 'лыжи', price: 22000, marks: [4, 4, 3, 4] },
 ]
+
+// spread operator
+
+// accumulator => первая итерация!
+// accumulator -> default value (если есть)
+// если нет - первое значение в массиве
+
+// accumulator -> след итерации
+
+// currentValue ->  след элемент массива
+
+const products = [
+  { id: 1, title: 'велосипед', price: 45000 },
+  { id: 2, title: 'самокат', price: 15000 },
+  { id: 3, title: 'сноуборд', price: 20000 },
+  { id: 4, title: 'скейт', price: 60000 },
+  { id: 5, title: 'лыжи', price: 22000 },
+]
+
+const min = products.reduce((accumulator, currentValue) => {
+  console.log('accumulator', accumulator)
+  console.log('currentValue', currentValue)
+  // ternary operator
+  return accumulator.price < currentValue.price ? accumulator : currentValue
+
+  if (accumulator.price < currentValue.price) {
+    return accumulator
+  } else {
+    return currentValue
+  }
+})
+
+console.log(min)
+
+const arr = [1, 2, 3]
+const secondArr = [4, 5, 6]
+
+const newArr = [...arr, ...secondArr]
+console.log(newArr)
+// добавить в массив newArr 9 10
+const anotherArr = [...newArr, {}, [[], []]]
+console.log(anotherArr)
+
+const stringOfNUmbers = '123456'
+const toArray = [...stringOfNUmbers]
+console.log(toArray)
+
+const authors = [
+  { id: 1, name: 'J.K. Rowling' },
+  { id: 2, name: 'George Orwell' },
+]
+const moreAuthors = [
+  { id: 3, name: 'Tolkien' },
+  { id: 4, name: 'Isaac Asimov' },
+]
+
+const allAuthors = [...authors, ...moreAuthors]
+console.log(allAuthors)
+
+const movies = [
+  { title: 'Inception', year: 2010 },
+  { title: 'Interstellar', year: 2014 },
+]
+const newMovie = { title: 'Dunkirk', year: 2017 }
+
+const allMovies = [...movies, newMovie]
+
+const user = { name: '', age: 1, group: '1105', homework: 'figma' }
+// spread operator
+const secondUser = { ...user } // поверхностное копирование объектов
+secondUser.name = 'Anna'
+
+console.log(firstUser)
+console.log(secondUser)
+
+const userData1 = { city: 'Berlin' }
+const userData2 = { stack: 'front' }
+const allData = { ...userData1, ...userData2 }
+console.log(allData)
+const dataWithHW = { ...allData, homework: 'array methods' }
+console.log(dataWithHW)
+
+// Объединение с одинаковыми свойствами
+const objectA = { x: 1, y: 2 }
+const objectB = { y: {}, a: 4 }
+const obj = { ...objectA, ...objectB }
+console.log(obj)
+// если объединяются два объекта с одинаковыми ключами,
+// то значение перезаписывается
+
+const user = { name: 'Alex', age: 30, group: '1105', homework: 'figma' }
+const newUser = { ...user, age: 31 }
+console.log(newUser)
+
+// добавить свойство isActive: true
+const users = [
+  { id: 1, name: 'Alice' },
+  { id: 2, name: 'Bob' },
+]
+const newUsers = users.map((user) => ({ ...user, isActive: true }))
+console.log(newUsers)
+
+// вернуть новый массив с ценными 0.9
+const products = [
+  { id: 'p1', name: 'Laptop', price: 1000 },
+  { id: 'p2', name: 'Phone', price: 500 },
+]
+
+const productsWithDiscount = products.map((product) => ({ ...product, price: product.price * 0.9 }))
+console.log(productsWithDiscount)
+
+const allProducts = [
+  { id: 1, title: 'велосипед', price: 45000, marks: [4, 5, 3, 5, 4, 5] },
+  { id: 2, title: 'самокат', price: 15000, marks: [4, 4, 5, 4, 4, 5] },
+  { id: 3, title: 'сноуборд', price: 20000, marks: [3, 3, 2, 3] },
+  { id: 4, title: 'лыжи', price: 22000, marks: [4, 4, 3, 4] },
+]
+
+const productsWithAverMark = allProducts.map((singleProduct) => {
+  const sumMarks = singleProduct.marks.reduce(
+    (accumulator, currentValue) => accumulator + currentValue,
+    0
+  )
+  const averageMark = sumMarks / singleProduct.marks.length // сумма на количество
+  const fixedAverageMark = averageMark.toFixed(1)
+  return { ...singleProduct, averageMark: fixedAverageMark }
+})
+console.log(productsWithAverMark)
