@@ -6,7 +6,25 @@
     <title>Document</title>
   </head>
   <body>
-    <h1>Hello</h1>
-    <script src="script.js"></script>
+    <form>
+      <label for="name">Name:</label>
+      <input
+        id="name"
+        name="first-name"
+        type="text"
+        value=""
+        placeholder="Enter your name"
+        required
+      />
+      <label for="age">Age:</label>
+      <input id="age" name="age" type="number" value="" placeholder="Enter your age" required />
+      <button type="submit">Send</button>
+    </form>
+    <div id="root"></div>
+    <button id="click">Click</button>
+    <label for="agree">Agree</label>
+    <input type="checkbox" id="agree" value="agree" />
+    <div class="container"></div>
+    <script src="form.js"></script>
   </body>
 </html>
