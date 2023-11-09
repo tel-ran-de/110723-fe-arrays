@@ -20,23 +20,21 @@ form.addEventListener('submit', (event) => {
 
   nameInput.value = ''
   ageInput.value = ''
-
-  console.log(userArray)
 })
 
-agreeBox.addEventListener('change', (event) => {
-  event.target.checked ? (button.disabled = false) : (button.disabled = true)
-})
+const productContainer = document.createElement('div')
+productContainer.innerText = 'Hello'
+root.append(productContainer) // append прикреплет элемент
 
-btnClick.addEventListener('click', (event) => {
-  console.log(event)
-})
+// создать элемент const sayBye h1
+const sayBye = document.createElement('h1')
+sayBye.innerText = 'Bye'
+sayBye.classList.add('say-bye')
 
-// nameInput.addEventListener('input', (event) => {
-//   console.log(event.target.value)
-// })
-
-// специальная функция, которая следит на событием
-// слушает = следит за событием
-// когда событие происходит
-// выполняется второго аргумента
+sayBye.classList.add('big-text')
+console.log(sayBye.classList)
+// add -добавляет remove - удаляет класс
+// toggle - позволяет переключать класс
+root.prepend(sayBye)
+// append в конец
+// prepend добавляет в начало
